@@ -18,8 +18,9 @@ $title.on('keyup', e => {
     window.clearTimeout(lastTimeout);
   let ourQueryId = ++ nextQueryId;
   lastTimeout = window.setTimeout( () => {
-    getItems(title)
-      .then(items => {
+    getItems(title).then(items => {
+        if (ourQueryId != nextQueryId)
+          return;
         $results.empty();
 
         const $items = items.map(item => $(`<li />`).text(item));

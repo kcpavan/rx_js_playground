@@ -9857,6 +9857,7 @@ $title.on('keyup', function (e) {
   var ourQueryId = ++nextQueryId;
   lastTimeout = window.setTimeout(function () {
     getItems(title).then(function (items) {
+      if (ourQueryId != nextQueryId) return;
       $results.empty();
 
       var $items = items.map(function (item) {
